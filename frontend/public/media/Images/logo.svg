@@ -1,0 +1,6 @@
+<svg width="200" height="50" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
+  <rect x="5" y="10" width="25" height="25" rx="2" fill="#387ed1"></rect>
+  <text x="40" y="30" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="bold" fill="#387ed1">
+    STACKTRADE
+  </text>
+</svg>
