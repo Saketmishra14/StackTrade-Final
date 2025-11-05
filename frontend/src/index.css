@@ -15,3 +15,24 @@ code {
   margin-left: 30px;
   color: black !important;
 }
+#supportHero{
+  background-color: rgb(56,126,209);
+  color: white;
+}
+#supportHero a{
+  color: white;
+  margin:15px;
+}
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 80px;
+}
+#supportInput{
+  padding:20px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 15px;
+}
