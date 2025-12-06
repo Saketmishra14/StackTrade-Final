@@ -44,6 +44,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+app.get("/",(req,res)=>{
+    res.send("backend is deployed");
+})
+
 app.get("/demouser", async (req,res)=>{
     let fakeUser=new User({
         username:"monkeshbhai",
