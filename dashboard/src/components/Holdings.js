@@ -6,7 +6,7 @@ import axios from "axios";
 const Holdings = () => {
   const [allHoldings,setAllHoldings]=useState([]);
   useEffect(()=>{
-    axios.get("http://localhost:3002/allholdings").then((res)=>{
+    axios.get("https://stack-trade-final.vercel.app/allholdings").then((res)=>{
       console.log(res.data);
       setAllHoldings(res.data);
     });
