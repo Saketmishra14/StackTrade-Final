@@ -1,12 +1,11 @@
 import React,{ useState,useEffect} from "react";
-import { positions } from "../data/data";
 import axios from 'axios';
 
 const Positions = () => {
   const [allPositions,setAllPositions]=useState([]);
 
   useEffect(()=>{
-    axios.get("https://stack-trade-final.vercel.app/allpositions").then((res)=>{
+    axios.get("http://localhost:3002/allpositions").then((res)=>{
       console.log(res.data);
       setAllPositions(res.data);
     });
