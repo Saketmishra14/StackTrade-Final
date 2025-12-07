@@ -4,58 +4,34 @@ const mongoose=require('mongoose');
 const bodyParser=require("body-parser");
 const cors=require("cors");
 
+//authentication
+const cookieParser = require("cookie-parser");
+const authRoute = require("./Routes/AuthRoute");
 
 const {OrdersModel}=require("./model/OrdersModel");
-
 const {HoldingsModel} =require("./model/HoldingsModel");
 const {PositionsModel}= require("./model/PositionsModel");
-
-//authentication part
-const flash = require('connect-flash');
-const session = require('express-session');
-const passport=require("passport");
-const LocalStrategy=require("passport-local");
-const User=require("./model/User.js")
 
 const PORT=process.env.PORT||3002;
 const uri=process.env.MONGO_URL;
 const app=express();
 
-app.use(cors());
+// ✅ Middleware (from blog)
+app.use(
+  cors({
+    origin: ["http://localhost:3000","http://localhost:3001"],
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
 app.use(bodyParser.json());
-
-// Create session options BEFORE using them
-const sessionOptions = {
-  secret: 'yourSecretKey',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    maxAge: 24 * 60 * 60 * 1000 // 1 day
-  }
-};
-
-//authentication code
-app.use(session(sessionOptions));
-app.use(flash());
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+app.use(cookieParser());
+app.use(express.json());
+app.use("/", authRoute);
 
 app.get("/",(req,res)=>{
     res.send("backend is deployed");
-})
-
-app.get("/demouser", async (req,res)=>{
-    let fakeUser=new User({
-        username:"monkeshbhai",
-        email:"monkesh@gmail.com",
-    });
-    let registerUser=await User.register(fakeUser,"helloworld");
-    res.send(registerUser);
-
 })
 
 
@@ -78,10 +54,13 @@ app.post("/newOrder",async (req,res)=>{
     res.send("order saved!");
 });
 
-app.listen(PORT,()=>{
-    console.log("server is up baby!");
-    mongoose.connect(uri);
-    console.log("DB is connected!")
-})
-
+mongoose
+  .connect(uri)
+  .then(() => {
+    console.log("MongoDB is connected successfully");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch(console.error);
 
