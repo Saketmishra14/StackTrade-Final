@@ -19,7 +19,7 @@ const app=express();
 // ✅ Middleware (from blog)
 app.use(
   cors({
-    origin: ["http://localhost:3000","http://localhost:3001"],
+    origin: ["https://stack-trade-final.vercel.app/","https://stack-trade-final-y96z.vercel.app/"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
