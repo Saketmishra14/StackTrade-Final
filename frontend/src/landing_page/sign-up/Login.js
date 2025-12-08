@@ -42,7 +42,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-            window.location.href = "https://stack-trade-final-y96z.vercel.app/"; // <-- dashboard app URL
+            window.location.href = "https://stack-trade-final-y96z.vercel.app"; // <-- dashboard app URL
 
         }, 1000);
       } else {
