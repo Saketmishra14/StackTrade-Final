@@ -14,7 +14,7 @@ const Home = () => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:3002",
+        "https://stacktrade-final.onrender.com",
         {},
         { withCredentials: true }
       );
