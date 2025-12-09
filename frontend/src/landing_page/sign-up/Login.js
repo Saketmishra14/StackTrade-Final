@@ -35,7 +35,11 @@ const Login = () => {
         {
           ...inputValue,
         },
-        { withCredentials: true }
+        { withCredentials: true,
+           headers: {
+          "Content-Type": "application/json",
+        },
+         }
       );
       console.log(data);
       const { success, message } = data;

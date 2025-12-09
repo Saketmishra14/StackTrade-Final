@@ -17,15 +17,15 @@ const uri=process.env.MONGO_URL;
 const app=express();
 
 // ✅ Middleware (from blog)
-const corsOption={
+app.use(
+  cors({
     origin: ["https://stack-trade-final.vercel.app","https://stack-trade-final-y96z.vercel.app"],
     credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  };
-  app.use(cors(corsOption));
-  app.options("*", cors(corsOption)); // ✅ THIS FIXES THE ERROR
-  
-
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
+app.options("*", cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
