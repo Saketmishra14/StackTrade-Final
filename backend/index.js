@@ -55,13 +55,15 @@ app.post("/newOrder",async (req,res)=>{
     res.send("order saved!");
 });
 
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+// ✅ THEN connect Mongo
 mongoose
   .connect(uri)
-  .then(() => {
-    console.log("MongoDB is connected successfully");
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
-    });
-  })
-  .catch(console.error);
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.error("Mongo error:", err));
+
+
 
