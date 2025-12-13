@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 
 /* ✅ Handle preflight requests */
-router.options("*", (req, res) => {
+router.options("/*", (req, res) => {
   res.sendStatus(200);
 });
 
