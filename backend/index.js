@@ -20,12 +20,10 @@ const app=express();
 app.use(
   cors({
     origin: ["https://stack-trade-final.vercel.app","https://stack-trade-final-y96z.vercel.app"],
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+    
   })
 );
-app.options("*", cors());
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
